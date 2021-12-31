@@ -1,0 +1,6 @@
+[jobs.lab1]
+image = { source = "dockerfile", path = "."}
+run = [
+  "javac Main.java ErrorListener.java Visitor.java",
+  "java Main.java $input $ir",
+]
