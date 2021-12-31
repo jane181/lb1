@@ -33,7 +33,7 @@ public class main {
             //final Listener listener = new Listener(ref);
             lexer.removeErrorListeners();
 
-            lexer.addErrorListener(new BaseErrorListener());
+            lexer.addErrorListener(e);
 
             //用词法分析器 lexer 构造一个记号流 tokens
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -43,7 +43,7 @@ public class main {
 
             parser.removeErrorListeners();
 
-            parser.addErrorListener(new BaseErrorListener());
+            parser.addErrorListener(e);
 
             //最终调用语法分析器的规则 prog，完成对表达式的验证
             //parser.prog();
