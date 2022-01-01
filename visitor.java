@@ -63,45 +63,45 @@ public class visitor extends lb1BaseVisitor<Void> {
         return super.visitNumber(ctx);
     }
 
-//     @Override
-//     public Void visitDecimalconst(lb1Parser.DecimalconstContext ctx) {
-//         return super.visitDecimalconst(ctx);
-//     }
+    @Override
+    public Void visitDecimalconst(lb1Parser.DecimalconstContext ctx) {
+        return super.visitDecimalconst(ctx);
+    }
 
-//     @Override
-//     public Void visitOctalconst(lb1Parser.OctalconstContext ctx) {
-//         return super.visitOctalconst(ctx);
-//     }
+    @Override
+    public Void visitOctalconst(lb1Parser.OctalconstContext ctx) {
+        return super.visitOctalconst(ctx);
+    }
 
-//     @Override
-//     public Void visitHexadecimalconst(lb1Parser.HexadecimalconstContext ctx) {
-//         return super.visitHexadecimalconst(ctx);
-//     }
+    @Override
+    public Void visitHexadecimalconst(lb1Parser.HexadecimalconstContext ctx) {
+        return super.visitHexadecimalconst(ctx);
+    }
 
-//     @Override
-//     public Void visitHexadecimalprefix(lb1Parser.HexadecimalprefixContext ctx) {
-//         return super.visitHexadecimalprefix(ctx);
-//     }
+    @Override
+    public Void visitHexadecimalprefix(lb1Parser.HexadecimalprefixContext ctx) {
+        return super.visitHexadecimalprefix(ctx);
+    }
 
-//     @Override
-//     public Void visitNonzerodigit(lb1Parser.NonzerodigitContext ctx) {
-//         return super.visitNonzerodigit(ctx);
-//     }
+    @Override
+    public Void visitNonzerodigit(lb1Parser.NonzerodigitContext ctx) {
+        return super.visitNonzerodigit(ctx);
+    }
 
-//     @Override
-//     public Void visitOctaldigit(lb1Parser.OctaldigitContext ctx) {
-//         return super.visitOctaldigit(ctx);
-//     }
+    @Override
+    public Void visitOctaldigit(lb1Parser.OctaldigitContext ctx) {
+        return super.visitOctaldigit(ctx);
+    }
 
-//     @Override
-//     public Void visitDigit(lb1Parser.DigitContext ctx) {
-//         return super.visitDigit(ctx);
-//     }
+    @Override
+    public Void visitDigit(lb1Parser.DigitContext ctx) {
+        return super.visitDigit(ctx);
+    }
 
-//     @Override
-//     public Void visitHexadecimaldigit(lb1Parser.HexadecimaldigitContext ctx) {
-//         return super.visitHexadecimaldigit(ctx);
-//     }
+    @Override
+    public Void visitHexadecimaldigit(lb1Parser.HexadecimaldigitContext ctx) {
+        return super.visitHexadecimaldigit(ctx);
+    }
 }
 
 
