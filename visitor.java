@@ -47,17 +47,19 @@ public class visitor extends lb1BaseVisitor<Void> {
         return super.visitStmt(ctx);
     }
 
-    @Override
+     @Override
     public Void visitNumber(lb1Parser.NumberContext ctx) {
         int number = 0;
         if (ctx.decimalconst() != null) {
             number = Integer.parseInt(ctx.decimalconst().toString());
         } else if (ctx.octalconst() != null) {
             String oct = ctx.octalconst().toString();
-            number = Integer.valueOf(oct, 8);
+            number = String.valueOf(Integer.parseInt(oct, 8));
+            //Integer.valueOf(oct, 8);
         } else {
             String hex = ctx.hexadecimalconst().toString().substring(2);
-            number = Integer.valueOf(hex, 16);
+            number =String.valueOf(Integer.parseInt(hex, 16));
+            //Integer.valueOf(hex, 16);
         }
         System.out.print(number);
         return super.visitNumber(ctx);
