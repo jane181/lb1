@@ -40,7 +40,7 @@ public class visitor extends lb1BaseVisitor<Void> {
 
     @Override
     public Void visitStmt(lb1Parser.StmtContext ctx) {
-        System.out.print("\tret ");
+        System.out.print("  ret ");
         // visit(ctx.number());
 //       new PostfixExpression().func(exp);
         //return null;
@@ -54,12 +54,10 @@ public class visitor extends lb1BaseVisitor<Void> {
             number = Integer.parseInt(ctx.decimalconst().toString());
         } else if (ctx.octalconst() != null) {
             String oct = ctx.octalconst().toString();
-            number = String.valueOf(Integer.parseInt(oct, 8));
-            //Integer.valueOf(oct, 8);
+            number = Integer.valueOf(oct, 8);
         } else {
             String hex = ctx.hexadecimalconst().toString().substring(2);
-            number =String.valueOf(Integer.parseInt(hex, 16));
-            //Integer.valueOf(hex, 16);
+            number =Integer.valueOf(hex, 16);
         }
         System.out.print(number);
         return super.visitNumber(ctx);
