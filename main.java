@@ -11,7 +11,7 @@ public class main {
     //public static String output_path = "";
 
     public static void main(String[] args) {
-        ANTLRErrorListener e = new ErrorListener();
+        ErrorListener e = new ErrorListener();
                 String input_path = args[0];
                 String output_path = args[1];
 
