@@ -24,9 +24,17 @@ public class main {
 
         String input = fileToString(input_path); // get the input
         CharStream inputStream = CharStreams.fromString(input); // 获取输入流
-        compilerLexer lexer = new compilerLexer(inputStream);
+         //用 in 构造词法分析器 lexer，词法分析的作用是产生记号
+        lb1Lexer lexer = new lb1Lexer(in);
+ 
         CommonTokenStream tokenStream = new CommonTokenStream(lexer); // 词法分析获取 token 流
-        compilerParser parser = new compilerParser(tokenStream);
+      
+
+            //再使用 tokens 构造语法分析器 parser,至此已经完成词法分析和语法分析的准备工作
+        lb1Parser parser = new lb1Parser(tokenStream);
+       
+       // CommonTokenStream tokenStream = new CommonTokenStream(lexer); // 词法分析获取 token 流
+      
         parser.removeErrorListeners();
         parser.addErrorListener(e);
         ParseTree tree = parser.compUnit(); // 获取语法树的根节点
