@@ -6,7 +6,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 import java.io.*;
 
-public class Main {
+public class main {
     public static void main(String[] args) {
         ANTLRErrorListener e = new ErrorListener();
         String input_path = args[0];
