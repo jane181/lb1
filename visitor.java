@@ -1,38 +1,40 @@
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-public class visitor extends lb1BaseVisitor<Void> {
-   public PrintStream ps = new PrintStream(new FileOutputStream(main.outputPath));
+
+public class Visitor extends lab2BaseVisitor<Void> {
+    public PrintStream ps = new PrintStream(new FileOutputStream(Test.outputPath));
     public static String exp = "";
 
     public Visitor() throws FileNotFoundException {
         System.setOut(ps);
     }
+
     @Override
-    public Void visitCompUnit(lb1Parser.CompUnitContext ctx) {
+    public Void visitCompUnit(lab2Parser.CompUnitContext ctx) {
         return super.visitCompUnit(ctx);
     }
 
     @Override
-    public Void visitFuncDef(lb1Parser.FuncDefContext ctx) {
+    public Void visitFuncDef(lab2Parser.FuncDefContext ctx) {
         System.out.print("define dso_local ");
         return super.visitFuncDef(ctx);
     }
 
     @Override
-    public Void visitFuncType(lb1Parser.FuncTypeContext ctx) {
+    public Void visitFuncType(lab2Parser.FuncTypeContext ctx) {
         System.out.print("i32 ");
         return null;
     }
 
     @Override
-    public Void visitIdent(lb1Parser.IdentContext ctx) {
+    public Void visitIdent(lab2Parser.IdentContext ctx) {
         System.out.print("@main() ");
         return null;
     }
 
     @Override
-    public Void visitBlock(lb1Parser.BlockContext ctx) {
+    public Void visitBlock(lab2Parser.BlockContext ctx) {
         System.out.println("{");
         visit(ctx.stmt());
         System.out.println("}");
@@ -40,69 +42,74 @@ public class visitor extends lb1BaseVisitor<Void> {
     }
 
     @Override
-    public Void visitStmt(lb1Parser.StmtContext ctx) {
-        System.out.print("  ret ");
-        // visit(ctx.number());
-//       new PostfixExpression().func(exp);
-        //return null;
-        return super.visitStmt(ctx);
+    public Void visitStmt(lab2Parser.StmtContext ctx) {
+        visit(ctx.exp());
+        System.out.print("    ret i32 ");
+      //  new PostfixExpression().func(exp);
+        return null;
     }
 
-     @Override
-    public Void visitNumber(lb1Parser.NumberContext ctx) {
-        int number = 0;
-        if (ctx.decimalconst() != null) {
-            number = Integer.parseInt(ctx.decimalconst().toString());
-        } else if (ctx.octalconst() != null) {
-            String oct = ctx.octalconst().toString();
-            number = Integer.valueOf(oct, 8);
+    @Override
+    public Void visitExp(lab2Parser.ExpContext ctx) {
+        return super.visitExp(ctx);
+    }
+
+    @Override
+    public Void visitAddExp(lab2Parser.AddExpContext ctx) {
+        return super.visitAddExp(ctx);
+    }
+
+    @Override
+    public Void visitAddSub(lab2Parser.AddSubContext ctx) {
+        exp += ctx.getText();
+        return super.visitAddSub(ctx);
+    }
+
+    @Override
+    public Void visitMulExp(lab2Parser.MulExpContext ctx) {
+        return super.visitMulExp(ctx);
+    }
+
+    @Override
+    public Void visitMulDiv(lab2Parser.MulDivContext ctx) {
+        exp += ctx.getText();
+        return super.visitMulDiv(ctx);
+    }
+
+    @Override
+    public Void visitUnaryExp(lab2Parser.UnaryExpContext ctx) {
+        return super.visitUnaryExp(ctx);
+    }
+
+    @Override
+    public Void visitPrimaryExp(lab2Parser.PrimaryExpContext ctx) {
+        if (ctx.number() != null) {
+            visit(ctx.number());
         } else {
-            String hex = ctx.hexadecimalconst().toString().substring(2);
-            number =Integer.valueOf(hex, 16);
+            exp += "(";
+            visit(ctx.exp());
+            exp += ")";
         }
-        System.out.print(number);
-        return super.visitNumber(ctx);
+        return null;
     }
 
     @Override
-    public Void visitDecimalconst(lb1Parser.DecimalconstContext ctx) {
-        return super.visitDecimalconst(ctx);
+    public Void visitUnaryOp(lab2Parser.UnaryOpContext ctx) {
+        exp += ctx.getText();
+        return super.visitUnaryOp(ctx);
     }
 
     @Override
-    public Void visitOctalconst(lb1Parser.OctalconstContext ctx) {
-        return super.visitOctalconst(ctx);
-    }
-
-    @Override
-    public Void visitHexadecimalconst(lb1Parser.HexadecimalconstContext ctx) {
-        return super.visitHexadecimalconst(ctx);
-    }
-
-    @Override
-    public Void visitHexadecimalprefix(lb1Parser.HexadecimalprefixContext ctx) {
-        return super.visitHexadecimalprefix(ctx);
-    }
-
-    @Override
-    public Void visitNonzerodigit(lb1Parser.NonzerodigitContext ctx) {
-        return super.visitNonzerodigit(ctx);
-    }
-
-    @Override
-    public Void visitOctaldigit(lb1Parser.OctaldigitContext ctx) {
-        return super.visitOctaldigit(ctx);
-    }
-
-    @Override
-    public Void visitDigit(lb1Parser.DigitContext ctx) {
-        return super.visitDigit(ctx);
-    }
-
-    @Override
-    public Void visitHexadecimaldigit(lb1Parser.HexadecimaldigitContext ctx) {
-        return super.visitHexadecimaldigit(ctx);
+    public Void visitNumber(lab2Parser.NumberContext ctx) {
+        if (ctx.DecimalConst() != null) {
+            exp += ctx.DecimalConst().getText();
+        } else if (ctx.OctalConst() != null) {
+            String s = ctx.OctalConst().getText().substring(1);
+            exp += String.valueOf(Integer.parseInt(s, 8));
+        } else {
+            String s = ctx.HexadecimalConst().getText().substring(2);
+            exp += String.valueOf(Integer.parseInt(s, 16));
+        }
+        return null;
     }
 }
-
-
