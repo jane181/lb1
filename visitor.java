@@ -2,7 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 public class visitor extends lb1BaseVisitor<Void> {
-   public PrintStream ps = new PrintStream(new FileOutputStream(Test.outputPath));
+   public PrintStream ps = new PrintStream(new FileOutputStream(main.outputPath));
     public static String exp = "";
 
     public Visitor() throws FileNotFoundException {
