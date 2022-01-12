@@ -78,12 +78,12 @@ public class main {
 
 
         CharStream inputStream = CharStreams.fromString(str); // 获取输入流
-        lab2Lexer lexer = new lab2Lexer(inputStream);
+        lab1Lexer lexer = new lab1Lexer(inputStream);
         lexer.removeErrorListeners();
         lexer.addErrorListener(ErrorListener.INSTANCE);
 
         CommonTokenStream tokenStream = new CommonTokenStream(lexer); // 词法分析获取 token 流
-        lab2Parser parser = new lab2Parser(tokenStream);
+        lab1Parser parser = new lab1Parser(tokenStream);
         parser.removeErrorListeners();
         parser.addErrorListener(ErrorListener.INSTANCE);
 
