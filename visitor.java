@@ -1,12 +1,6 @@
 
 public class visitor extends lb1BaseVisitor<Void> {
-    // public PrintStream ps = new PrintStream(new FileOutputStream(main.output_path));
-    public static String exp = "";
-
-//    public visitor() throws FileNotFoundException {
-//        System.out.print("lllll ");
-//    }
-
+   
     @Override
     public Void visitCompUnit(lb1Parser.CompUnitContext ctx) {
         return super.visitCompUnit(ctx);
