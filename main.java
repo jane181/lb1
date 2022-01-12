@@ -80,12 +80,12 @@ public class main {
         CharStream inputStream = CharStreams.fromString(str); // 获取输入流
         lab2Lexer lexer = new lab2Lexer(inputStream);
         lexer.removeErrorListeners();
-        lexer.addErrorListener(ThrowingErrorListener.INSTANCE);
+        lexer.addErrorListener(ErrorListener.INSTANCE);
 
         CommonTokenStream tokenStream = new CommonTokenStream(lexer); // 词法分析获取 token 流
         lab2Parser parser = new lab2Parser(tokenStream);
         parser.removeErrorListeners();
-        parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+        parser.addErrorListener(ErrorListener.INSTANCE);
 
         ParseTree tree = parser.compUnit(); // 获取语法树的根节点
         // System.out.println(tree.toStringTree(parser)); // 打印字符串形式的语法树
