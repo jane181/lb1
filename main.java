@@ -3,64 +3,29 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-import java.io.*;
+//import java.io.*;
 
 public class main {
-    public static void main(String[] args) {
-        ANTLRErrorListener e = new ErrorListener();
-        String input_path = args[0];
-        String output_path = args[1];
+   
+      public static void main(String[] args) throws IOException {
+            ErrorListener e = new ErrorListener();
+            FileInputStream file = new FileInputStream(args[0]);
+            String outputPath = "";
+            outputPath = args[1];
 
-        // 输出重定向到目标文件
-        File file = new File(output_path);
-        PrintStream stream = null;
-        try {
-            stream = new PrintStream(file);
-        } catch (FileNotFoundException fileNotFoundException) {
-            fileNotFoundException.printStackTrace();
-        }
-        System.setOut(stream);
-public class main {
-    public static String output_path = "";
+            byte[] arr = new byte[100];
+            String str = "";
+            int i = 0;
 
-    public static void main(String[] args) {
-        ErrorListener e = new ErrorListener();
-        String input_path = args[0];
-        output_path = args[1];
-        File file = new File(args[1]);
-        //output_path = args[1];
-        String str;
-
-        PrintStream ps = null;
-//        File file = new File(args[1]);
-//
-        try {
-            ps = new PrintStream(file);
-        } catch (FileNotFoundException fileNotFoundException) {
-            fileNotFoundException.printStackTrace();
-        }
-        System.setOut(ps);
-
-        char[] array = new char[100];
-        try {
-            BufferedReader input = new BufferedReader(new FileReader(file));
-            StringBuilder stringB = new StringBuilder();
-
-            while (input.read(array) != -1) {
-                stringB.append(new String(array));
-                array = new char[1];
+            while ((i = file.read(arr, 0, 100)) != -1) {
+                str += new String(arr, 0, i);
             }
-            input.close();
-            str = stringB.toString();
-        } catch (Exception f) {
-            //System.out.println(e);
-            f.getStackTrace();
-            str = "";
-        }
 
         //String input = fileToString(input_path); // get the input
-        CharStream inputStream = CharStreams.fromString(str); // 获取输入流
+        CharStream in = CharStreams.fromString(str); // 获取输入流
          //用 in 构造词法分析器 lexer，词法分析的作用是产生记号
         lb1Lexer lexer = new lb1Lexer(in);
  
@@ -77,6 +42,7 @@ public class main {
         ParseTree tree = parser.compUnit(); // 获取语法树的根节点
         Visitor visitor = new Visitor();
         visitor.visit(tree);
+          file.close();
     }
 
 //     public static String fileToString(String fileName) {
