@@ -21,9 +21,46 @@ public class main {
             fileNotFoundException.printStackTrace();
         }
         System.setOut(stream);
+public class main {
+    public static String output_path = "";
 
-        String input = fileToString(input_path); // get the input
-        CharStream inputStream = CharStreams.fromString(input); // 获取输入流
+    public static void main(String[] args) {
+        ErrorListener e = new ErrorListener();
+        String input_path = args[0];
+        output_path = args[1];
+        File file = new File(args[1]);
+        //output_path = args[1];
+        String str;
+
+        PrintStream ps = null;
+//        File file = new File(args[1]);
+//
+        try {
+            ps = new PrintStream(file);
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }
+        System.setOut(ps);
+
+        char[] array = new char[100];
+        try {
+            BufferedReader input = new BufferedReader(new FileReader(file));
+            StringBuilder stringB = new StringBuilder();
+
+            while (input.read(array) != -1) {
+                stringB.append(new String(array));
+                array = new char[1];
+            }
+            input.close();
+            str = stringB.toString();
+        } catch (Exception f) {
+            //System.out.println(e);
+            f.getStackTrace();
+            str = "";
+        }
+
+        //String input = fileToString(input_path); // get the input
+        CharStream inputStream = CharStreams.fromString(str); // 获取输入流
          //用 in 构造词法分析器 lexer，词法分析的作用是产生记号
         lb1Lexer lexer = new lb1Lexer(in);
  
@@ -42,21 +79,21 @@ public class main {
         visitor.visit(tree);
     }
 
-    public static String fileToString(String fileName) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            StringBuilder stringBuilder = new StringBuilder();
-            char[] buffer = new char[10];
-            while (reader.read(buffer) != -1) {
-                stringBuilder.append(new String(buffer));
-                buffer = new char[1];
-            }
-            reader.close();
-            return stringBuilder.toString();
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-        return "";
-    }
+//     public static String fileToString(String fileName) {
+//         try {
+//             BufferedReader reader = new BufferedReader(new FileReader(fileName));
+//             StringBuilder stringBuilder = new StringBuilder();
+//             char[] buffer = new char[10];
+//             while (reader.read(buffer) != -1) {
+//                 stringBuilder.append(new String(buffer));
+//                 buffer = new char[1];
+//             }
+//             reader.close();
+//             return stringBuilder.toString();
+//         }
+//         catch (Exception e) {
+//             System.out.println(e);
+//         }
+//         return "";
+//     }
 }
