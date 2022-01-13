@@ -2,7 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
-public class Visitor extends lab1BaseVisitor<Void> {
+public class visitor extends lb1BaseVisitor<Void> {
 
 
    @Override
