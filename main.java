@@ -4,7 +4,9 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 
 public class main {
    
@@ -36,7 +38,7 @@ public class main {
 
         ParseTree tree = parser.compUnit(); // 获取语法树的根节点
     
-        Visitor visitor = new Visitor();
+        visitor visitor = new visitor();
         visitor.visit(tree);
 
         file.close();
