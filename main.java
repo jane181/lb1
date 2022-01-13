@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 public class main {
-   public static String outputPath = "";
+
     public static void main(String[] args) throws IOException {
             ErrorListener e = new ErrorListener();
             FileInputStream file = new FileInputStream(args[0]);
-            //String outputPath = "";
+            String outputPath = "";
             outputPath = args[1];
 
             byte[] arr = new byte[100];
