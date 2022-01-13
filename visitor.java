@@ -3,12 +3,7 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 public class Visitor extends lab1BaseVisitor<Void> {
-//     public PrintStream ps = new PrintStream(new FileOutputStream(main.outputPath));
-//     public static String exp = "";
 
-//     public Visitor() throws FileNotFoundException {
-//         System.setOut(ps);
-//     }
 
    @Override
     public Void visitCompUnit(lb1Parser.CompUnitContext ctx) {
