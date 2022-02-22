@@ -1,5 +1,5 @@
 
-FROM openjdk:1.8
+FROM openjdk:15
 WORKDIR /myapp/
 COPY . /myapp/
 COPY src/.* ./
