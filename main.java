@@ -36,18 +36,15 @@ public class main {
 
     public static String fileToString(String fileName) {
       
-           
-           FileInputStream fis = null;
-        byte[] buffer = new byte[10];
-        StringBuilder sb = new StringBuilder();
         try {
-            fis = new FileInputStream(fileName);
-
-            while (fis.read(buffer) != -1) {
-                sb.append(new String(buffer));
-                buffer = new byte[10];
-            }
-            fis.close();
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+StringBuilder stringBuilder = new StringBuilder();
+char[] buffer = new char[10];
+while (reader.read(buffer) != -1) {
+    stringBuilder.append(new String(buffer));
+    buffer = new char[10];
+}
+reader.close();
 
             return stringBuilder.toString();
         }
