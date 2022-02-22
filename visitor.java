@@ -20,17 +20,15 @@ public class visitor extends lb1BaseVisitor<Void> {
 
     @Override
     public Void visitNumber(lb1Parser.NumberContext ctx) {
-        int number = 0;
-        if (ctx.Decimal_const() != null) {
-            number = Integer.parseInt(ctx.Decimal_const().toString());
-        }
-        else if (ctx.Octal_const() != null) {
-            String oct = ctx.Octal_const().toString();
-            number = Integer.valueOf(oct,8);
-        }
-        else {
-            String hex = ctx.Hexadecimal_const().toString().substring(2);
-            number = Integer.valueOf(hex,16);
+       int number = 0;
+        if (ctx.decimalconst() != null) {
+            number = Integer.parseInt(ctx.decimalconst().toString());
+        } else if (ctx.octalconst() != null) {
+            String oct = ctx.octalconst().toString();
+            number = Integer.valueOf(oct, 8);
+        } else {
+            String hex = ctx.hexadecimalconst().toString().substring(2);
+            number =Integer.valueOf(hex, 16);
         }
         System.out.print("i32 " + number);
         return super.visitNumber(ctx);
