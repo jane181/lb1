@@ -18,6 +18,7 @@ public static String inputPath="";
         File file = new File(outputPath);
        
         PrintStream ps = null;
+        String input = fileToString(inputPath); // get the input
         try {
             ps = new PrintStream(file);
         } catch (FileNotFoundException fileNotFoundException) {
@@ -25,7 +26,7 @@ public static String inputPath="";
         }
         System.setOut(ps);
         
-        String input = fileToString(inputPath); // get the input
+      
         CharStream inputStream = CharStreams.fromString(input); // 获取输入流
        lb1Lexer lexer = new lb1Lexer(inputStream);
         CommonTokenStream tokenStream = new CommonTokenStream(lexer); // 词法分析获取 token 流
