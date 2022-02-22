@@ -3,6 +3,6 @@
 image = { source = "dockerfile", path = ".", tag = "pascal-lex-example" }
 
 run = [
-   "export CLASSPATH='./antlr-4.9.3-complete.jar:$CLASSPATH'",
+  "javac main.java ErrorListener.java visitor.java",
   "java main.java $input $ir",
 ]
