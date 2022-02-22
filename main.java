@@ -35,8 +35,8 @@ public class main {
     }
 
     public static String fileToString(String fileName) {
-        try {
-            try {
+      
+           
            FileInputStream fis = null;
         byte[] buffer = new byte[10];
         StringBuilder sb = new StringBuilder();
