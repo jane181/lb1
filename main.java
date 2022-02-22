@@ -36,18 +36,21 @@ public class main {
 
     public static String fileToString(String fileName) {
         try {
+            try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             StringBuilder stringBuilder = new StringBuilder();
-            char[] buffer = new char[10];
-            while (reader.read(buffer) != -1) {
-                stringBuilder.append(new String(buffer));
-                buffer = new char[1];
+            String line = null;
+            String ls = System.getProperty("line.separator");
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
             }
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             reader.close();
             return stringBuilder.toString();
         }
-        catch (Exception e) {
-            System.out.println(e);
+        catch (IOException e) {
+            e.printStackTrace();
         }
         return "";
     }
