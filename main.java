@@ -12,8 +12,8 @@ public class main {
         String input_path = args[0];
         String output_path = args[1];
 
-         //File file = new File(output_path);
-        FileOutputStream file = new FileOutputStream(output_path);
+        File file = new File(output_path);
+        
         PrintStream stream = null;
         try {
             stream = new PrintStream(file);
