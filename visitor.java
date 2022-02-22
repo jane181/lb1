@@ -51,7 +51,7 @@ public class visitor extends lb1BaseVisitor<Void> {
         if (ctx.decimalconst() != null) {
            
             String dec = ctx.decimalconst().toString();
-            number = Integer.valueOf(dec, 4);
+            number = Integer.valueOf(dec, 10);
         } else if (ctx.octalconst() != null) {
             String oct = ctx.octalconst().toString();
             number = Integer.valueOf(oct, 8);
