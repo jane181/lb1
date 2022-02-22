@@ -9,16 +9,16 @@ import java.io.*;
 public class main {
 public static String outputPath="";
 public static String inputPath="";
+    
     public static void main(String[] args) {
         ErrorListener e = new ErrorListener();
         inputPath = args[0];
         outputPath = args[1];
         
-        
         File file = new File(outputPath);
        
         PrintStream ps = null;
-        String input = fileToString(inputPath); // get the input
+        String str = useBufread(inputPath); 
         try {
             ps = new PrintStream(file);
         } catch (FileNotFoundException fileNotFoundException) {
@@ -27,18 +27,23 @@ public static String inputPath="";
         System.setOut(ps);
         
       
-        CharStream inputStream = CharStreams.fromString(input); // 获取输入流
-       lb1Lexer lexer = new lb1Lexer(inputStream);
+        CharStream inputStream = CharStreams.fromString(str); // 获取输入流
+        lb1Lexer lexer = new lb1Lexer(inputStream);
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(e);
+
         CommonTokenStream tokenStream = new CommonTokenStream(lexer); // 词法分析获取 token 流
-         lb1Parser parser = new lb1Parser(tokenStream);
+        lb1Parser parser = new lb1Parser(tokenStream);
         parser.removeErrorListeners();
         parser.addErrorListener(e);
+
         ParseTree tree = parser.compUnit(); // 获取语法树的根节点
+
         visitor visitor = new visitor();
         visitor.visit(tree);
     }
 
-    public static String fileToString(String fileName) {
+    public static String useBufread(String fileName) {
       
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
