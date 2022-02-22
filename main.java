@@ -37,16 +37,18 @@ public class main {
     public static String fileToString(String fileName) {
         try {
             try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = null;
-            String ls = System.getProperty("line.separator");
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-                stringBuilder.append(ls);
+           FileInputStream fis = null;
+        byte[] buffer = new byte[10];
+        StringBuilder sb = new StringBuilder();
+        try {
+            fis = new FileInputStream(fileName);
+
+            while (fis.read(buffer) != -1) {
+                sb.append(new String(buffer));
+                buffer = new byte[10];
             }
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-            reader.close();
+            fis.close();
+
             return stringBuilder.toString();
         }
         catch (IOException e) {
