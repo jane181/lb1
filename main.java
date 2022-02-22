@@ -12,10 +12,16 @@ public class main {
         String input_path = args[0];
         String output_path = args[1];
 
-        // 输出重定向到目标文件
-       // File file = new File(output_path);
-         FileOutputStream file = new FileOutputStream(output_path);
-       System.setOut(new PrintStream(file));
+         //File file = new File(output_path);
+        FileOutputStream file = new FileOutputStream(output_path);
+        PrintStream stream = null;
+        try {
+            stream = new PrintStream(file);
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        }
+        System.setOut(stream);
+        
         String input = fileToString(input_path); // get the input
         CharStream inputStream = CharStreams.fromString(input); // 获取输入流
        lb1Lexer lexer = new lb1Lexer(inputStream);
