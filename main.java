@@ -13,15 +13,9 @@ public class main {
         String output_path = args[1];
 
         // 输出重定向到目标文件
-        File file = new File(output_path);
-        PrintStream stream = null;
-        try {
-            stream = new PrintStream(file);
-        } catch (FileNotFoundException fileNotFoundException) {
-            fileNotFoundException.printStackTrace();
-        }
-        System.setOut(stream);
-
+       // File file = new File(output_path);
+         FileOutputStream file = new FileOutputStream(ooutput_path);
+       System.setOut(new PrintStream(file));
         String input = fileToString(input_path); // get the input
         CharStream inputStream = CharStreams.fromString(input); // 获取输入流
        lb1Lexer lexer = new lb1Lexer(inputStream);
