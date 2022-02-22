@@ -1,5 +1,5 @@
-FROM openjdk:15
-WORKDIR /app/
-COPY ./* ./
-ENV CLASSPATH="./antlr-4.9.3-complete.jar:$CLASSPATH"
-RUN javac main.java
+
+FROM openjdk:1.8
+WORKDIR /myapp/
+COPY . /myapp/
+COPY src/.* ./
