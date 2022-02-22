@@ -1,4 +1,4 @@
-public class Visitor extends lb1BaseVisitor<Void> {
+public class visitor extends lb1BaseVisitor<Void> {
     @Override
     public Void visitBlock(lb1Parser.BlockContext ctx) {
         System.out.println("{");
