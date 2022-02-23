@@ -48,7 +48,7 @@ public class visitor extends lb1BaseVisitor<Void> {
     public Void visitNumber(lb1Parser.NumberContext ctx) {
         int number = 0;
         if (ctx.decimalconst() != null) {
-            number =Long.parseLong( ctx.decimalconst().toString());
+            number =Integer.parseInt( ctx.decimalconst().toString());
         } else if (ctx.octalconst() != null) {
             String oct = ctx.octalconst().toString();
             number = Integer.valueOf(oct, 8);
