@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+
 public class visitor extends lb1BaseVisitor<Void> {
 
 
@@ -36,12 +37,10 @@ public class visitor extends lb1BaseVisitor<Void> {
         return null;
     }
 
+
     @Override
     public Void visitStmt(lb1Parser.StmtContext ctx) {
         System.out.print("  ret ");
-        // visit(ctx.number());
-//       new PostfixExpression().func(exp);
-        //return null;
         return super.visitStmt(ctx);
     }
 
@@ -49,9 +48,7 @@ public class visitor extends lb1BaseVisitor<Void> {
     public Void visitNumber(lb1Parser.NumberContext ctx) {
         int number = 0;
         if (ctx.decimalconst() != null) {
-           
-            String dec = ctx.decimalconst().toString();
-            number = Integer.valueOf(dec, 10);
+            number =Integer.parseInt( ctx.decimalconst().toString());
         } else if (ctx.octalconst() != null) {
             String oct = ctx.octalconst().toString();
             number = Integer.valueOf(oct, 8);
